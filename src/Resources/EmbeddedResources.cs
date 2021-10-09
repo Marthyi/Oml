@@ -14,6 +14,9 @@ namespace Oml.Resources
         /// <returns></returns>
         public static Stream ReadAsStream(this Assembly assembly, string resourcePath)
         {
+            assembly = assembly ?? throw new ArgumentNullException(nameof(assembly));
+            resourcePath = resourcePath ?? throw new ArgumentNullException(nameof(resourcePath));
+
             resourcePath = resourcePath.Replace('/', '.');
             resourcePath = resourcePath.Replace('\\', '.');
 
