@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 
 namespace Oml.Resources
 {
-    public static class EmbeddedResources
+    public static class EmbeddedResourcesv1
     {
-        private readonly static ConcurrentDictionary<Assembly, string> _assemblyNames = new ConcurrentDictionary<Assembly, string>();
-        private readonly static ConcurrentDictionary<string, HashSet<string>> _assemblyFilenames = new ConcurrentDictionary<string, HashSet<string>>();
-
         /// <summary>
         /// Open a read stream on embedded resource
         /// </summary>
@@ -21,29 +15,24 @@ namespace Oml.Resources
         public static Stream ReadAsStream(this Assembly assembly, string resourcePath)
         {
             assembly = assembly ?? throw new ArgumentNullException(nameof(assembly));
+            resourcePath = resourcePath ?? throw new ArgumentNullException(nameof(resourcePath));
+
+            resourcePath = resourcePath.Replace('/', '.');
+            resourcePath = resourcePath.Replace('\\', '.');
 
             resourcePath = resourcePath switch
             {
-                string p when p == null => throw new ArgumentNullException(nameof(resourcePath)),
                 string p when string.IsNullOrWhiteSpace(p) => throw new ArgumentException($"Resource with location '{p}' is invalid"),
-                _ => resourcePath.Replace('/', '.').Replace('\\', '.')
-            };
-
-            resourcePath = resourcePath switch
-            {
                 string p when p.StartsWith('.') && p.Length == 1 => throw new ArgumentException($"Resource with location '{p}' is invalid"),
                 string p when p.StartsWith('.') => p[1..],
                 string p => resourcePath
             };
 
-            string assemblyName = _assemblyNames.GetOrAdd(assembly, asm => asm.GetName().Name);
-            HashSet<string> assemblyFilenames = _assemblyFilenames.GetOrAdd(assemblyName, _ => assembly
-            .GetManifestResourceNames()
-            .ToHashSet());
+            resourcePath = $"{assembly.GetName().Name}.{resourcePath}";
 
-            resourcePath = $"{assemblyName}.{resourcePath}";
+            var info = assembly.GetManifestResourceInfo(resourcePath);
 
-            if (!assemblyFilenames.Contains(resourcePath))
+            if (info == null)
             {
                 throw new ArgumentException($"Resource with location '{resourcePath}' does not exists");
             }
