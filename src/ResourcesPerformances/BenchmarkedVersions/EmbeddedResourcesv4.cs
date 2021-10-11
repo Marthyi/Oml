@@ -1,11 +1,16 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace Oml.Resources
 {
-    public static class EmbeddedResources
+    public static class EmbeddedResourcesv4
     {
+        private static ConcurrentDictionary<Assembly, string> _assemblyNames = new ConcurrentDictionary<Assembly, string>();
+        private static ConcurrentDictionary<string, string[]> _assemblyFilenames = new ConcurrentDictionary<string, string[]>();
+
         /// <summary>
         /// Open a read stream on embedded resource
         /// </summary>
@@ -28,11 +33,12 @@ namespace Oml.Resources
                 string p => resourcePath
             };
 
-            resourcePath = $"{assembly.GetName().Name}.{resourcePath}";
+            string assemblyName = _assemblyNames.GetOrAdd(assembly, asm => asm.GetName().Name);
+            string[] assemblyFilenames = _assemblyFilenames.GetOrAdd(assemblyName, _ => assembly.GetManifestResourceNames());
 
-            var info = assembly.GetManifestResourceInfo(resourcePath);
+            resourcePath = $"{assemblyName}.{resourcePath}";
 
-            if (info == null)
+            if (!assemblyFilenames.Contains(resourcePath))
             {
                 throw new ArgumentException($"Resource with location '{resourcePath}' does not exists");
             }
