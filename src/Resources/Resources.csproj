@@ -13,7 +13,12 @@
     <RepositoryUrl>https://github.com/Marthyi/Oml</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>Oml.Resources</PackageId>
-    <Version>1.1.0</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.2.0</Version>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
 
 </Project>
