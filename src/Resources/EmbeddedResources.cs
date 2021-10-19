@@ -24,9 +24,9 @@ namespace Oml.Resources
 
             resourcePath = resourcePath switch
             {
-                string p when p == null => throw new ArgumentNullException(nameof(resourcePath)),
+                null => throw new ArgumentNullException(nameof(resourcePath)),
                 string p when string.IsNullOrWhiteSpace(p) => throw new ArgumentException($"Resource with location '{p}' is invalid"),
-                _ => resourcePath.Replace('/', '.').Replace('\\', '.')
+                _ => resourcePath.Replace('/', '.').Replace('\\', '.').Replace(' ','_')
             };
 
             resourcePath = resourcePath switch

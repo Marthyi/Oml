@@ -29,5 +29,13 @@ namespace ResourcesTests
                 .Should()
                 .Be("hello world");
         }
+
+        [Fact]
+        public void ReadTextWithPathContainingSpace()
+        {
+            EmbeddedResources.ReadAsText(CurrentAssembly, "/resources/Sub Folder_/subfile.txt")
+                .Should()
+                .Be("hello world");
+        }
     }
 }
