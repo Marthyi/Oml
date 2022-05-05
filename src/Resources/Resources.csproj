@@ -14,7 +14,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>Oml.Resources</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>1.3.0</Version>
+    <Version>1.3.1</Version>
     <AnalysisLevel>6.0</AnalysisLevel>
     <Description>
       Access easily to your embedded resources.

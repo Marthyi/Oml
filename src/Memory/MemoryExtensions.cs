@@ -8,6 +8,16 @@ namespace Oml.Memory
 {
     public static class MemoryExtensions
     {
+        public static void OptimizeStringMemory<T>(this IEnumerable<T> items)
+        {
+            var hash = new HashSet<string>();
+
+            foreach (T item in items)
+            {
+                item.InternalizeStringProperties(hash);
+            }
+        }
+
         public static void OptimizeStringMemory<T>(this IEnumerable<T> items, HashSet<string> hash)
         {
             foreach (T item in items)

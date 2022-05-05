@@ -18,6 +18,28 @@ public class DtoFields
 public class OptimizeStringMemory
 {
     [Fact]
+    public void OptimizeFullCollection_WithoutParameter()
+    {
+        var collection = GetCollection();
+
+        bool isSameValue = Object.ReferenceEquals(collection[0].Label, collection[1].Label);
+        isSameValue.Should().BeFalse();
+
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+
+        long memory = GC.GetTotalMemory(false);
+
+        collection.OptimizeStringMemory();
+
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        long memory2 = GC.GetTotalMemory(false);
+
+        memory2.Should().BeLessThan((long)(memory * 0.2));
+    }
+
+    [Fact]
     public void OptimizeFullCollection()
     {
         var collection = GetCollection();
@@ -119,7 +141,7 @@ public class OptimizeStringMemory
         List<Dto> collection = new List<Dto>(1_000_000);
         for (int i = 0; i < 1_000_000; i++)
         {
-           
+
 
             char[] txt = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789".ToCharArray();
             collection.Add(new Dto()
