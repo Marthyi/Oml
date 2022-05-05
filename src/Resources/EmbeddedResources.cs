@@ -26,7 +26,7 @@ namespace Oml.Resources
             {
                 null => throw new ArgumentNullException(nameof(resourcePath)),
                 string p when string.IsNullOrWhiteSpace(p) => throw new ArgumentException($"Resource with location '{p}' is invalid"),
-                _ => resourcePath.Replace('/', '.').Replace('\\', '.').Replace(' ','_')
+                _ => resourcePath.Replace('/', '.').Replace('\\', '.').Replace(' ', '_')
             };
 
             resourcePath = resourcePath switch
@@ -41,14 +41,14 @@ namespace Oml.Resources
             .GetManifestResourceNames()
             .ToHashSet());
 
-            resourcePath = $"{assemblyName}.{resourcePath}";
+            string fullResourcePath = assemblyFilenames.SingleOrDefault(p => p.EndsWith(resourcePath));
 
-            if (!assemblyFilenames.Contains(resourcePath))
+            if (string.IsNullOrWhiteSpace(fullResourcePath))
             {
                 throw new ArgumentException($"Resource with location '{resourcePath}' does not exists");
             }
 
-            return assembly.GetManifestResourceStream(resourcePath);
+            return assembly.GetManifestResourceStream(fullResourcePath);
         }
 
         /// <summary>
@@ -59,7 +59,7 @@ namespace Oml.Resources
         /// <returns></returns>
         public static string ReadAsText(this Assembly assembly, string resourcePath)
         {
-            using StreamReader sr = new StreamReader(ReadAsStream(assembly, resourcePath));
+            using var sr = new StreamReader(assembly.ReadAsStream(resourcePath));
             return sr.ReadToEnd();
         }
     }

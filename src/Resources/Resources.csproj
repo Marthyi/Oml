@@ -14,11 +14,19 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageId>Oml.Resources</PackageId>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>1.2.0</Version>
+    <Version>1.3.0</Version>
+    <AnalysisLevel>6.0</AnalysisLevel>
+    <Description>
+      Access easily to your embedded resources.
+
+      Stream stream = EmbeddedResources.ReadAsStream(CurrentAssembly, "file.zip");
+
+      string text = EmbeddedResources.ReadAsText(CurrentAssembly, "file.csv");
+    </Description>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="\"/>
+    <None Include="README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ namespace Oml.Resources
 {
     public static class EmbeddedResourcesv2
     {
-        private static ConcurrentDictionary<Assembly, string> _assemlbyNames = new ConcurrentDictionary<Assembly, string>();
+        private static readonly ConcurrentDictionary<Assembly, string> _assemlbyNames = new();
 
         /// <summary>
         /// Open a read stream on embedded resource
@@ -35,7 +35,7 @@ namespace Oml.Resources
 
             resourcePath = $"{assemblyName}.{resourcePath}";
 
-            var info = assembly.GetManifestResourceInfo(resourcePath);
+            ManifestResourceInfo info = assembly.GetManifestResourceInfo(resourcePath);
 
             if (info == null)
             {
@@ -53,7 +53,7 @@ namespace Oml.Resources
         /// <returns></returns>
         public static string ReadAsText(this Assembly assembly, string resourcePath)
         {
-            using StreamReader sr = new StreamReader(ReadAsStream(assembly, resourcePath));
+            using var sr = new StreamReader(ReadAsStream(assembly, resourcePath));
             return sr.ReadToEnd();
         }
     }

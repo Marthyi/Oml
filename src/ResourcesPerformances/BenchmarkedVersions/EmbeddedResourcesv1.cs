@@ -30,7 +30,7 @@ namespace Oml.Resources
 
             resourcePath = $"{assembly.GetName().Name}.{resourcePath}";
 
-            var info = assembly.GetManifestResourceInfo(resourcePath);
+            ManifestResourceInfo info = assembly.GetManifestResourceInfo(resourcePath);
 
             if (info == null)
             {
@@ -48,7 +48,7 @@ namespace Oml.Resources
         /// <returns></returns>
         public static string ReadAsText(this Assembly assembly, string resourcePath)
         {
-            using StreamReader sr = new StreamReader(ReadAsStream(assembly, resourcePath));
+            using var sr = new StreamReader(ReadAsStream(assembly, resourcePath));
             return sr.ReadToEnd();
         }
     }

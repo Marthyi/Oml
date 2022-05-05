@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>OtherNamespace.Unexpected</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="resources\file.txt" />
+    <None Remove="resources\Sub Folder_\subfile.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="resources\file.txt" />
+    <EmbeddedResource Include="resources\Sub Folder_\subfile.txt" />
+  </ItemGroup>
+
+</Project>

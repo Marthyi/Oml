@@ -1,10 +1,9 @@
 using System.Reflection;
 
-namespace ResourcesTests
+namespace ResourcesTests;
+
+public class EmbeddedResourcesTestsBase
 {
-    public class EmbeddedResourcesTestsBase
-    {
-        protected static readonly Assembly CurrentAssembly = typeof(EmbeddedResourcesTestsBase).Assembly;
-        protected const string FileContent = "hello world";
-    }
+    protected static readonly Assembly CurrentAssembly = typeof(EmbeddedResourcesTestsBase).Assembly;
+    protected const string FileContent = "hello world";
 }
