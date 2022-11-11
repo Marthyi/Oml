@@ -22,7 +22,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memory", "Memory\Memory.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MemoryTests", "MemoryTests\MemoryTests.csproj", "{FA137E36-D52F-4AD2-AA95-9BBB7761D7A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResourceAssembly", "ResourceAssembly\ResourceAssembly.csproj", "{196F9882-7E5F-477D-AA11-FCD089ECC4D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResourceAssembly", "ResourceAssembly\ResourceAssembly.csproj", "{196F9882-7E5F-477D-AA11-FCD089ECC4D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Pdf", "Pdf\Pdf.csproj", "{2E9D8020-ACE1-430F-866E-7F70C6C5DF5D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PdfTests", "PdfTests\PdfTests.csproj", "{041418EE-2667-48F5-9035-D36304BB02B3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +58,14 @@ Global
 		{196F9882-7E5F-477D-AA11-FCD089ECC4D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{196F9882-7E5F-477D-AA11-FCD089ECC4D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{196F9882-7E5F-477D-AA11-FCD089ECC4D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E9D8020-ACE1-430F-866E-7F70C6C5DF5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E9D8020-ACE1-430F-866E-7F70C6C5DF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E9D8020-ACE1-430F-866E-7F70C6C5DF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E9D8020-ACE1-430F-866E-7F70C6C5DF5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{041418EE-2667-48F5-9035-D36304BB02B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{041418EE-2667-48F5-9035-D36304BB02B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{041418EE-2667-48F5-9035-D36304BB02B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{041418EE-2667-48F5-9035-D36304BB02B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +75,7 @@ Global
 		{DE03227D-5928-480D-BADE-057EF1BAB369} = {EA2B5453-0EA0-438C-9522-E234CAF60623}
 		{FA137E36-D52F-4AD2-AA95-9BBB7761D7A7} = {EA2B5453-0EA0-438C-9522-E234CAF60623}
 		{196F9882-7E5F-477D-AA11-FCD089ECC4D1} = {EA2B5453-0EA0-438C-9522-E234CAF60623}
+		{041418EE-2667-48F5-9035-D36304BB02B3} = {EA2B5453-0EA0-438C-9522-E234CAF60623}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32ADE7DF-05F4-4121-9BCF-2807E3832157}
